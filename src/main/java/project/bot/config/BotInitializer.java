@@ -6,7 +6,6 @@ package project.bot.config;
  */
 
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -19,7 +18,6 @@ import project.bot.service.TenderParserServiceBot;
 
 @Component
 @Slf4j
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BotInitializer {
 
