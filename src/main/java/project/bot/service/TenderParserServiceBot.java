@@ -17,9 +17,10 @@ import project.bot.config.BotConfig;
 @Component
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TenderParserServiceBot extends TelegramLongPollingBot{
+public class TenderParserServiceBot extends TelegramLongPollingBot {
     final BotConfig config = new BotConfig();
     final MessageSender messageSender = new MessageSender();
+
     public TenderParserServiceBot(DefaultBotOptions options, String botToken) {
         super(options, botToken);
     }

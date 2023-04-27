@@ -33,7 +33,7 @@ public class BotInitializer {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(bot);
         } catch (TelegramApiException e) {
-            log.error("Error occurred: "+e.getMessage());
+            log.error("Error occurred: " + e.getMessage());
         }
     }
 }
