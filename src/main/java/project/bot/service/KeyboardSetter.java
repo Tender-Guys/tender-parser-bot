@@ -6,6 +6,10 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Vladyslav Pustovalov
+ * class which consist of keyboards which are viewed to a user in the Telegram Bot
+ */
 public class KeyboardSetter {
 
     /**

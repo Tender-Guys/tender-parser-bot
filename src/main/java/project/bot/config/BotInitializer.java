@@ -1,10 +1,5 @@
 package project.bot.config;
 
-/**
- * @author Vladyslav Pustovalov
- * class which registers the created bot
- */
-
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +11,10 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import project.bot.service.TenderParserServiceBot;
 
+/**
+ * @author Vladyslav Pustovalov
+ * class which registers the created bot
+ */
 @Component
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)

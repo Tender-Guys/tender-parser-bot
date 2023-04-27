@@ -1,8 +1,4 @@
 package project.bot.service;
-/**
- * @author Vladyslav Pustovalov
- * class TelegramBot which gets messages from useers and could answer to them
- */
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -14,14 +10,16 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import project.bot.config.BotConfig;
 
+/**
+ * @author Vladyslav Pustovalov
+ * class TelegramBot which gets messages from useers and could answer to them
+ */
 @Component
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TenderParserServiceBot extends TelegramLongPollingBot{
     final BotConfig config = new BotConfig();
-
     final MessageSender messageSender = new MessageSender();
-
     public TenderParserServiceBot(DefaultBotOptions options, String botToken) {
         super(options, botToken);
     }
