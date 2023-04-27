@@ -13,7 +13,6 @@ import org.telegram.telegrambots.bots.DefaultBotOptions;
 @Configuration
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BotConfig {
-
     final String botName = System.getenv("botName");
     final String botToken = System.getenv("botToken");
     final DefaultBotOptions botOptions = new DefaultBotOptions();

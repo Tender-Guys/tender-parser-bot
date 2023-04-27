@@ -43,53 +43,48 @@ public class TenderParserServiceBot extends TelegramLongPollingBot {
         if (!update.hasMessage() || !update.getMessage().hasText()) {
             log.warn("Unexpected update from user " + userName);
             try {
-                execute(messageSender.warnMessage(chatId));
+                execute(messageSender.sendUnsupportedDataWarning(chatId));
                 log.info("Warn message was sent to user " + userName);
             } catch (TelegramApiException e) {
                 log.error(errorOccurred + e);
             }
         } else {
-
             switch (messageText) {
                 case "/start" -> {
                     try {
-                        execute(messageSender.startMessage(chatId));
+                        execute(messageSender.sendWelcomeMessage(chatId));
                         log.info("Welcome message was sent to user " + userName);
                     } catch (TelegramApiException e) {
                         log.error(errorOccurred + e);
                     }
                 }
-
                 case "My subscription list" -> {
                     try {
-                        execute(messageSender.userSubscriptionsList(chatId));
+                        execute(messageSender.sendUserSubscriptionsList(chatId));
                         log.info("Subscription list was sent to user " + userName);
                     } catch (TelegramApiException e) {
                         log.error(errorOccurred + e);
                     }
                 }
-
                 case "Available tender sites for subscription" -> {
                     try {
-                        execute(messageSender.availableSitesList(chatId));
+                        execute(messageSender.SendAvailableSitesList(chatId));
                         log.info("Available sites list was sent to user " + userName);
                     } catch (TelegramApiException e) {
                         log.error(errorOccurred + e);
                     }
                 }
-
                 case "Help instructions" -> {
                     try {
-                        execute(messageSender.helpMessage(chatId));
+                        execute(messageSender.sendHelpMessage(chatId));
                         log.info("Help instructions was sent to user " + userName);
                     } catch (TelegramApiException e) {
                         log.error(errorOccurred + e);
                     }
                 }
-
                 default -> {
                     try {
-                        execute(messageSender.defaultMessage(chatId));
+                        execute(messageSender.sendUnsupportedCommand(chatId));
                         log.info("Default message was sent to user " + userName);
                     } catch (TelegramApiException e) {
                         log.error(errorOccurred + e);

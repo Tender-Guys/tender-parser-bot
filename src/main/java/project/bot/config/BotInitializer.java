@@ -19,9 +19,7 @@ import project.bot.service.TenderParserServiceBot;
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BotInitializer {
-
     final BotConfig config = new BotConfig();
-
     final TenderParserServiceBot bot = new TenderParserServiceBot(config.getBotOptions(), config.getBotToken());
 
     /**
