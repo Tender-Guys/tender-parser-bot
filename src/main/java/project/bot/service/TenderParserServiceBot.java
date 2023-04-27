@@ -68,7 +68,7 @@ public class TenderParserServiceBot extends TelegramLongPollingBot {
                 }
                 case "Available tender sites for subscription" -> {
                     try {
-                        execute(messageSender.SendAvailableSitesList(chatId));
+                        execute(messageSender.sendAvailableSitesList(chatId));
                         log.info("Available sites list was sent to user " + userName);
                     } catch (TelegramApiException e) {
                         log.error(errorOccurred + e);
@@ -84,7 +84,7 @@ public class TenderParserServiceBot extends TelegramLongPollingBot {
                 }
                 default -> {
                     try {
-                        execute(messageSender.sendUnsupportedCommand(chatId));
+                        execute(messageSender.sendUnsupportedCommandWarning(chatId));
                         log.info("Default message was sent to user " + userName);
                     } catch (TelegramApiException e) {
                         log.error(errorOccurred + e);

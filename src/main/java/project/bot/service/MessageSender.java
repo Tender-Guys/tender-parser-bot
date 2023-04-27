@@ -43,7 +43,7 @@ public class MessageSender {
     /**
      * Method which sends the list with tender sites available for the subscription
      */
-    public SendMessage SendAvailableSitesList(long chatId) {
+    public SendMessage sendAvailableSitesList(long chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
         message.setText(availableSitesText);
@@ -65,7 +65,7 @@ public class MessageSender {
     /**
      * Method which sends default answer on not supported commands
      */
-    public SendMessage sendUnsupportedCommand(long chatId) {
+    public SendMessage sendUnsupportedCommandWarning(long chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
         message.setText(unsupportedCommandText);

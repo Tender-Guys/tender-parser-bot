@@ -11,9 +11,9 @@ import java.util.List;
  * class which consist of keyboards which are viewed to a user in the Telegram Bot
  */
 public class KeyboardSetter {
-    static final String USER_SUBSCRIPTIONS_BUTTON = "My subscription list";
-    static final String AVAILABLE_SITES_BUTTON = "Available tender sites for subscription";
-    static final String HELP_BUTTON = "Help instructions";
+    final String userSubscriptionsButton = "My subscription list";
+    final String availableSitesButton = "Available tender sites for subscription";
+    final String helpButton = "Help instructions";
 
     /**
      * Method which initializes default keyboard for the bot
@@ -25,9 +25,9 @@ public class KeyboardSetter {
         KeyboardRow row2 = new KeyboardRow();
         KeyboardRow row3 = new KeyboardRow();
 
-        row1.add(USER_SUBSCRIPTIONS_BUTTON);
-        row2.add(AVAILABLE_SITES_BUTTON);
-        row3.add(HELP_BUTTON);
+        row1.add(userSubscriptionsButton);
+        row2.add(availableSitesButton);
+        row3.add(helpButton);
         keyboardRows.add(row1);
         keyboardRows.add(row2);
         keyboardRows.add(row3);
