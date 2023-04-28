@@ -1,7 +1,5 @@
 package project.bot.config;
 
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -17,10 +15,9 @@ import project.bot.service.TenderParserServiceBot;
  */
 @Component
 @Slf4j
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class BotInitializer {
-    final BotConfig config = new BotConfig();
-    final TenderParserServiceBot bot = new TenderParserServiceBot(config.getBotOptions(), config.getBotToken());
+    private final BotConfig config = new BotConfig();
+    private final TenderParserServiceBot bot = new TenderParserServiceBot(config.getBotOptions(), config.getBotToken());
 
     /**
      * Method which registers the created bot

@@ -1,22 +1,19 @@
 package project.bot.service;
 
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 /**
  * @author Vladyslav Pustovalov
  * class which consist of answers to a user from the Telegram Bot
  */
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class MessageSender {
-    final String welcomeText = "Welcome text";
-    final String usersSubscriptionsText = "User's subscription list";
-    final String availableSitesText = "Available sites for subscription";
-    final String helpText = "Help text";
-    final String unsupportedCommandText = "Sorry, this command is not supported!\nPlease use the Keyboard buttons!";
-    final String unsupportedDataWarningText = "You are trying to make bad things!\nPlease use the Keyboard buttons!";
-    final KeyboardSetter keyboard = new KeyboardSetter();
+    private final String welcomeText = "Welcome text";
+    private final String usersSubscriptionsText = "User's subscription list";
+    private final String availableSitesText = "Available sites for subscription";
+    private final String helpText = "Help text";
+    private final String unsupportedCommandText = "Sorry, this command is not supported!\nPlease use the Keyboard buttons!";
+    private final String unsupportedDataWarningText = "You are trying to make bad things!\nPlease use the Keyboard buttons!";
+    private final KeyboardSetter keyboard = new KeyboardSetter();
 
     /**
      * Method which sends the welcome text to a user

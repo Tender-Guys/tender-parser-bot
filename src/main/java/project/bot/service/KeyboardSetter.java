@@ -11,9 +11,9 @@ import java.util.List;
  * class which consist of keyboards which are viewed to a user in the Telegram Bot
  */
 public class KeyboardSetter {
-    final String userSubscriptionsButton = "My subscription list";
-    final String availableSitesButton = "Available tender sites for subscription";
-    final String helpButton = "Help instructions";
+    private final String userSubscriptionsButton = "My subscription list";
+    private final String availableSitesButton = "Available tender sites for subscription";
+    private final String helpButton = "Help instructions";
 
     /**
      * Method which initializes default keyboard for the bot

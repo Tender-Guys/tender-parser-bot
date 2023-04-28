@@ -1,11 +1,10 @@
 package project.bot.service;
 
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import project.bot.config.BotConfig;
@@ -16,10 +15,9 @@ import project.bot.config.BotConfig;
  */
 @Component
 @Slf4j
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class TenderParserServiceBot extends TelegramLongPollingBot {
-    final BotConfig config = new BotConfig();
-    final MessageSender messageSender = new MessageSender();
+    private final BotConfig config = new BotConfig();
+    private final MessageSender messageSender = new MessageSender();
 
     public TenderParserServiceBot(DefaultBotOptions options, String botToken) {
         super(options, botToken);
@@ -38,59 +36,43 @@ public class TenderParserServiceBot extends TelegramLongPollingBot {
         String userName = update.getMessage().getChat().getUserName();
         String messageText = update.getMessage().getText();
         long chatId = update.getMessage().getChatId();
-        String errorOccurred = "Error occurred: ";
 
         if (!update.hasMessage() || !update.getMessage().hasText()) {
             log.warn("Unexpected update from user " + userName);
-            try {
-                execute(messageSender.sendUnsupportedDataWarning(chatId));
-                log.info("Warn message was sent to user " + userName);
-            } catch (TelegramApiException e) {
-                log.error(errorOccurred + e);
-            }
+            sendMessageToUser(messageSender.sendUnsupportedDataWarning(chatId));
+            log.info("Warn message was sent to user " + userName);
         } else {
             switch (messageText) {
                 case "/start" -> {
-                    try {
-                        execute(messageSender.sendWelcomeMessage(chatId));
-                        log.info("Welcome message was sent to user " + userName);
-                    } catch (TelegramApiException e) {
-                        log.error(errorOccurred + e);
-                    }
+                    sendMessageToUser(messageSender.sendWelcomeMessage(chatId));
+                    log.info("Welcome message was sent to user " + userName);
                 }
                 case "My subscription list" -> {
-                    try {
-                        execute(messageSender.sendUserSubscriptionsList(chatId));
-                        log.info("Subscription list was sent to user " + userName);
-                    } catch (TelegramApiException e) {
-                        log.error(errorOccurred + e);
-                    }
+                    sendMessageToUser(messageSender.sendUserSubscriptionsList(chatId));
+                    log.info("Subscription list was sent to user " + userName);
+
                 }
                 case "Available tender sites for subscription" -> {
-                    try {
-                        execute(messageSender.sendAvailableSitesList(chatId));
-                        log.info("Available sites list was sent to user " + userName);
-                    } catch (TelegramApiException e) {
-                        log.error(errorOccurred + e);
-                    }
+                    sendMessageToUser(messageSender.sendAvailableSitesList(chatId));
+                    log.info("Available sites list was sent to user " + userName);
                 }
                 case "Help instructions" -> {
-                    try {
-                        execute(messageSender.sendHelpMessage(chatId));
-                        log.info("Help instructions was sent to user " + userName);
-                    } catch (TelegramApiException e) {
-                        log.error(errorOccurred + e);
-                    }
+                    sendMessageToUser(messageSender.sendHelpMessage(chatId));
+                    log.info("Help instructions was sent to user " + userName);
                 }
                 default -> {
-                    try {
-                        execute(messageSender.sendUnsupportedCommandWarning(chatId));
-                        log.info("Default message was sent to user " + userName);
-                    } catch (TelegramApiException e) {
-                        log.error(errorOccurred + e);
-                    }
+                    sendMessageToUser(messageSender.sendUnsupportedCommandWarning(chatId));
+                    log.info("Unsupported command warning was sent to user " + userName);
                 }
             }
+        }
+    }
+
+    private void sendMessageToUser(SendMessage message) {
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            log.error("Error occurred: "+e);
         }
     }
 }
