@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import project.bot.config.BotConfig;
@@ -33,9 +34,10 @@ public class TenderParserServiceBot extends TelegramLongPollingBot {
      */
     @Override
     public void onUpdateReceived(Update update) {
-        String userName = update.getMessage().getChat().getUserName();
-        String messageText = update.getMessage().getText();
-        long chatId = update.getMessage().getChatId();
+        Message message = update.getMessage();
+        String userName = message.getChat().getUserName();
+        String messageText = message.getText();
+        long chatId = message.getChatId();
 
         if (!update.hasMessage() || !update.getMessage().hasText()) {
             log.warn("Unexpected update from user " + userName);
