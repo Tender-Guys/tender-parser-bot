@@ -2,6 +2,7 @@ package project.bot.service;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+import project.bot.util.BotMenuItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,6 @@ import java.util.List;
  * class which consist of keyboards which are viewed to a user in the Telegram Bot
  */
 public class KeyboardSetter {
-    private final String userSubscriptionsButton = "My subscription list";
-    private final String availableSitesButton = "Available tender sites for subscription";
-    private final String helpButton = "Help instructions";
 
     /**
      * Method which initializes default keyboard for the bot
@@ -25,9 +23,9 @@ public class KeyboardSetter {
         KeyboardRow row2 = new KeyboardRow();
         KeyboardRow row3 = new KeyboardRow();
 
-        row1.add(userSubscriptionsButton);
-        row2.add(availableSitesButton);
-        row3.add(helpButton);
+        row1.add(BotMenuItems.USER_SUBSCRIPTIONS);
+        row2.add(BotMenuItems.AVAILABLE_SITES);
+        row3.add(BotMenuItems.HELP_INST);
         keyboardRows.add(row1);
         keyboardRows.add(row2);
         keyboardRows.add(row3);

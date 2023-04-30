@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import project.bot.config.BotConfig;
+import project.bot.util.BotMenuItems;
 
 /**
  * @author Vladyslav Pustovalov
@@ -48,17 +49,18 @@ public class TenderParserServiceBot extends TelegramLongPollingBot {
                 case "/start" -> {
                     sendMessageToUser(messageSender.sendWelcomeMessage(chatId));
                     log.info("Welcome message was sent to user " + userName);
+                    break;
                 }
-                case "My subscription list" -> {
+                case BotMenuItems.USER_SUBSCRIPTIONS -> {
                     sendMessageToUser(messageSender.sendUserSubscriptionsList(chatId));
                     log.info("Subscription list was sent to user " + userName);
 
                 }
-                case "Available tender sites for subscription" -> {
+                case BotMenuItems.AVAILABLE_SITES -> {
                     sendMessageToUser(messageSender.sendAvailableSitesList(chatId));
                     log.info("Available sites list was sent to user " + userName);
                 }
-                case "Help instructions" -> {
+                case BotMenuItems.HELP_INST -> {
                     sendMessageToUser(messageSender.sendHelpMessage(chatId));
                     log.info("Help instructions was sent to user " + userName);
                 }
