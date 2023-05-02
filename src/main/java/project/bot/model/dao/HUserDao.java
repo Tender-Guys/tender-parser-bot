@@ -2,7 +2,7 @@ package project.bot.model.dao;
 
 import org.hibernate.Session;
 import org.hibernate.HibernateException;
-import project.bot.model.dto.User;
+import project.bot.model.response.User;
 import project.bot.util.HibernateSessionFactoryUtil;
 
 public class HUserDao implements IUserDao {

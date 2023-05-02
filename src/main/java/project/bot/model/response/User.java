@@ -1,6 +1,8 @@
 package project.bot.model.response;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.NaturalId;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -9,8 +11,9 @@ import java.util.Objects;
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tender_id")
+    @Column(name = "user_id")
     private Integer id;
+    @NaturalId(mutable = true)
     @Column(name = "user_chat_id")
     private Integer chatId;
     @Column(name = "user_first_name")

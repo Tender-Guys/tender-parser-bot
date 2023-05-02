@@ -1,6 +1,6 @@
 package project.bot.model.dao;
 
-import project.bot.model.dto.User;
+import project.bot.model.response.User;
 
 public interface IUserDao {
 
