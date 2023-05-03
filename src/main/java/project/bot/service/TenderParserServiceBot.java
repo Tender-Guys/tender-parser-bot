@@ -23,13 +23,16 @@ import project.bot.util.BotMenuItems;
 @Component
 @Slf4j
 public class TenderParserServiceBot extends TelegramLongPollingBot {
+    private final String classError = "TenderParserServiceBot error occurred: ";
     private final BotConfig config = new BotConfig();
     private final MessageSender messageSender = new MessageSender();
     private final IUserDao dao = new HUserDao();
+
     @Bean
     private IUserDao getDao() {
         return dao;
     }
+
     private final BotService service = new BotService(getDao());
 
     public TenderParserServiceBot(DefaultBotOptions options, String botToken) {
@@ -92,7 +95,7 @@ public class TenderParserServiceBot extends TelegramLongPollingBot {
         try {
             execute(message);
         } catch (TelegramApiException e) {
-            log.error("Error occurred: "+e);
+            log.error(classError + e.getMessage());
         }
     }
 }

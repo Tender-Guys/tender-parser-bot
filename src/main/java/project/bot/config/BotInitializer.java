@@ -16,6 +16,7 @@ import project.bot.service.TenderParserServiceBot;
 @Component
 @Slf4j
 public class BotInitializer {
+    private final String classError = "BotInitializer error occurred: ";
     private final BotConfig config = new BotConfig();
     private final TenderParserServiceBot bot = new TenderParserServiceBot(config.getBotOptions(), config.getBotToken());
 
@@ -27,8 +28,9 @@ public class BotInitializer {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(bot);
+            log.info("Bot " + bot.getBotUsername() + " is successfully registered");
         } catch (TelegramApiException e) {
-            log.error("Error occurred: " + e.getMessage());
+            log.error(classError + e.getMessage());
         }
     }
 }

@@ -10,4 +10,6 @@ public class BotMenuItems {
     public static final String AVAILABLE_SITES = "Available tender sites for subscription";
     public static final String HELP_INST = "Help instructions";
 
+    private BotMenuItems() {
+    }
 }

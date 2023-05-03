@@ -1,5 +1,6 @@
 package project.bot.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -7,7 +8,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import project.bot.model.response.User;
 
+@Slf4j
 public class HibernateSessionFactoryUtil {
+    private static final String CLASS_ERROR = "HibernateSessionFactoryUtil error occurred: ";
     private static SessionFactory sessionFactory;
 
     private HibernateSessionFactoryUtil() {
@@ -28,8 +31,9 @@ public class HibernateSessionFactoryUtil {
                     .applySettings(configuration.getProperties())
                     .build();
             sessionFactory = configuration.buildSessionFactory(builder);
+            log.info("SessionFactory is successfully created");
         } catch (HibernateException e) {
-            e.printStackTrace();
+            log.error(CLASS_ERROR + e.getMessage());
         }
     }
 }
