@@ -4,11 +4,11 @@ import project.bot.model.response.User;
 
 public interface IUserDao {
 
-    public User getByChatId(Integer chatId);
+    User getByChatId(Integer chatId);
 
-    public boolean addUser(User user);
+    void addUser(User user);
 
-    public void updateUser(User user);
+    void updateUser(User user);
 
-    public boolean deleteUser(User user);
+    void deleteUser(User user);
 }

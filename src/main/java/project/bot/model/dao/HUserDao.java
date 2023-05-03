@@ -22,8 +22,7 @@ public class HUserDao implements IUserDao {
     }
 
     @Override
-    public boolean addUser(User user) {
-        Boolean isAdded = false;
+    public void addUser(User user) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             User existingUser = session.byNaturalId(User.class)
                     .load();
@@ -31,42 +30,36 @@ public class HUserDao implements IUserDao {
                 session.getTransaction().begin();
                 session.persist(user);
                 session.getTransaction().commit();
-                isAdded = true;
             }
-            log.info("User " + user.toString() + ", is added to DB");
+            log.info(user.toString() + ", is added to DB");
         } catch (HibernateException e) {
             log.error(classError + e.getMessage());
         }
-        return isAdded;
     }
 
     @Override
     public void updateUser(User user) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             session.merge(user);
-            log.info("User " + user.toString() + ", is updated in DB");
+            log.info(user.toString() + ", is updated in DB");
         } catch (HibernateException e) {
             log.error(classError + e.getMessage());
         }
     }
 
     @Override
-    public boolean deleteUser(User user) {
-        Boolean isDeleted = false;
+    public void deleteUser(User user) {
         if (getByChatId(user.getChatId()) == null) {
-            log.info("User " + user.toString() + " is already deleted");
-            return isDeleted;
+            log.info(user.toString() + " is already deleted");
         } else {
             try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
                 session.getTransaction().begin();
                 session.remove(user);
                 session.getTransaction().commit();
-                isDeleted = true;
-                log.info("User " + user.toString() + " is successfully deleted");
+                log.info(user.toString() + " is successfully deleted");
             } catch (HibernateException e) {
                 log.error(classError + e.getMessage());
             }
         }
-        return isDeleted;
     }
 }
