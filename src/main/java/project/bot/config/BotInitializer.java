@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-import project.bot.service.TenderParserServiceBot;
+import project.bot.telegram.TenderParserServiceBot;
 
 /**
  * @author Vladyslav Pustovalov
@@ -19,6 +19,13 @@ public class BotInitializer {
     private final String classError = "BotInitializer error occurred: ";
     private final BotConfig config = new BotConfig();
     private final TenderParserServiceBot bot = new TenderParserServiceBot(config.getBotOptions(), config.getBotToken());
+
+    public BotInitializer() {
+    }
+
+    public TenderParserServiceBot getBot() {
+        return bot;
+    }
 
     /**
      * Method which registers the created bot

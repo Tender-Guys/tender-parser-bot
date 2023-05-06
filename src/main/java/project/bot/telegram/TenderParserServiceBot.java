@@ -1,4 +1,4 @@
-package project.bot.service;
+package project.bot.telegram;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +12,11 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import project.bot.config.BotConfig;
 import project.bot.model.dao.HUserDao;
 import project.bot.model.dao.IUserDao;
+import project.bot.model.response.Tender;
 import project.bot.model.response.User;
+import project.bot.service.BotService;
 import project.bot.util.BotMenuItems;
+import java.util.List;
 
 /**
  * @author Vladyslav Pustovalov
@@ -54,7 +57,7 @@ public class TenderParserServiceBot extends TelegramLongPollingBot {
         long chatId = message.getChatId();
 
         User user = new User();
-        user.setChatId(Math.toIntExact(chatId));
+        user.setChatId(chatId);
         user.setFirstName(message.getChat().getFirstName());
         user.setLastName(message.getChat().getLastName());
 
@@ -72,7 +75,6 @@ public class TenderParserServiceBot extends TelegramLongPollingBot {
                 case BotMenuItems.USER_SUBSCRIPTIONS -> {
                     sendMessageToUser(messageSender.sendUserSubscriptionsList(chatId));
                     log.info("Subscription list was sent to user " + userName);
-
                 }
                 case BotMenuItems.AVAILABLE_SITES -> {
                     sendMessageToUser(messageSender.sendAvailableSitesList(chatId));
@@ -96,5 +98,10 @@ public class TenderParserServiceBot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             log.error(classError + e.getMessage());
         }
+    }
+
+    public void sendNewTendersListToUsers(List<Tender> newTendesList ) {
+        service.getAllUsers().stream().forEach(user ->
+            sendMessageToUser(messageSender.sendNewTendersList(newTendesList, user.getChatId())));
     }
 }

@@ -6,6 +6,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import project.bot.model.response.Initiator;
+import project.bot.model.response.Site;
+import project.bot.model.response.Tender;
 import project.bot.model.response.User;
 
 @Slf4j
@@ -26,7 +29,10 @@ public class HibernateSessionFactoryUtil {
     private static void createSessionFactory() {
         try {
             Configuration configuration = new Configuration().configure();
-            configuration.addAnnotatedClass(User.class);
+            configuration.addAnnotatedClass(User.class)
+                         .addAnnotatedClass(Tender.class)
+                         .addAnnotatedClass(Initiator.class)
+                         .addAnnotatedClass(Site.class);
             StandardServiceRegistry builder = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties())
                     .build();
