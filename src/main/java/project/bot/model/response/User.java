@@ -2,7 +2,6 @@ package project.bot.model.response;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,7 +14,7 @@ public class User implements Serializable {
     private Integer id;
     @NaturalId(mutable = true)
     @Column(name = "user_chat_id")
-    private Integer chatId;
+    private Long chatId;
     @Column(name = "user_first_name")
     private String firstName;
     @Column(name = "user_last_name")
@@ -24,7 +23,7 @@ public class User implements Serializable {
     public User (){
     }
 
-    public User (Integer id, Integer chatId, String firstName, String lastName) {
+    public User (Integer id, Long chatId, String firstName, String lastName) {
         this.id = id;
         this.chatId = chatId;
         this.firstName = firstName;
@@ -33,7 +32,7 @@ public class User implements Serializable {
 
     public static class Builder {
         private Integer id;
-        private Integer chatId;
+        private Long chatId;
         private String firstName;
         private String lastName;
 
@@ -42,7 +41,7 @@ public class User implements Serializable {
             return this;
         }
 
-        public Builder withChatId(Integer chatId) {
+        public Builder withChatId(Long chatId) {
             this.chatId = chatId;
             return this;
         }
@@ -70,11 +69,11 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public Integer getChatId() {
+    public Long getChatId() {
         return chatId;
     }
 
-    public void setChatId(Integer chatId) {
+    public void setChatId(Long chatId) {
         this.chatId = chatId;
     }
 
