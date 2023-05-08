@@ -14,8 +14,12 @@
 	<name>TenderParserServiceBot</name>
 	<description>Bot for tender-parser-service</description>
 	<properties>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
 		<java.version>17</java.version>
 		<telegarm.version>6.5.0</telegarm.version>
+		<lombok.version>1.18.26</lombok.version>
 		<hibernateCore.version>6.1.7.Final</hibernateCore.version>
 		<mySQLConnector.version>8.0.32</mySQLConnector.version>
 	</properties>
@@ -44,7 +48,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<version>${lombok.version}</version>
 		</dependency>
 
 		<dependency>
@@ -72,20 +76,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+					<classifier>exec</classifier>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>
+				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
-					<target>17</target>
+					<release>${java.version}</release>
+					<target>${java.version}</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
 		</plugins>
