@@ -16,11 +16,13 @@ import project.bot.telegram.TenderParserServiceBot;
 @Component
 @Slf4j
 public class BotInitializer {
-    private final String classError = "BotInitializer error occurred: ";
-    private final BotConfig config = new BotConfig();
-    private final TenderParserServiceBot bot = new TenderParserServiceBot(config.getBotOptions(), config.getBotToken());
+    private final String classError= "BotInitializer error occurred: ";
+    private final BotConfig config;
+    private final TenderParserServiceBot bot;
 
     public BotInitializer() {
+        config = new BotConfig();
+        bot = new TenderParserServiceBot(config.getBotOptions(), config.getBotToken());
     }
 
     public TenderParserServiceBot getBot() {
