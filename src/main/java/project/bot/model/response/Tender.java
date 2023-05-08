@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tenders")
-public class Tender  implements Serializable {
+public class Tender implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tender_id")
