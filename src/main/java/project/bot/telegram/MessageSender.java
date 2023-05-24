@@ -1,6 +1,8 @@
-package project.bot.service;
+package project.bot.telegram;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import project.bot.model.response.Tender;
+import java.util.List;
 
 /**
  * @author Vladyslav Pustovalov
@@ -78,6 +80,15 @@ public class MessageSender {
         message.setChatId(chatId);
         message.setText(unsupportedDataWarningText);
         message.setReplyMarkup(keyboard.setDefaultKeyboard());
+        return message;
+    }
+
+    public SendMessage sendNewTendersList(List<Tender> newTendersList, long chatId) {
+        SendMessage message = new SendMessage();
+        message.setChatId(chatId);
+        message.setText(newTendersList.toString());
+        message.setReplyMarkup(keyboard.setDefaultKeyboard());
+
         return message;
     }
 }

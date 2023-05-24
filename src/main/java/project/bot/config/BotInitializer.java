@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-import project.bot.service.TenderParserServiceBot;
+import project.bot.telegram.TenderParserServiceBot;
 
 /**
  * @author Vladyslav Pustovalov
@@ -16,8 +16,18 @@ import project.bot.service.TenderParserServiceBot;
 @Component
 @Slf4j
 public class BotInitializer {
-    private final BotConfig config = new BotConfig();
-    private final TenderParserServiceBot bot = new TenderParserServiceBot(config.getBotOptions(), config.getBotToken());
+    private final String classError= "BotInitializer error occurred: ";
+    private final BotConfig config;
+    private final TenderParserServiceBot bot;
+
+    public BotInitializer() {
+        config = new BotConfig();
+        bot = new TenderParserServiceBot(config.getBotOptions(), config.getBotToken());
+    }
+
+    public TenderParserServiceBot getBot() {
+        return bot;
+    }
 
     /**
      * Method which registers the created bot
@@ -27,8 +37,9 @@ public class BotInitializer {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(bot);
+            log.info("Bot " + bot.getBotUsername() + " is successfully registered");
         } catch (TelegramApiException e) {
-            log.error("Error occurred: " + e.getMessage());
+            log.error(classError + e.getMessage());
         }
     }
 }
