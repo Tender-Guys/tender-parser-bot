@@ -19,7 +19,7 @@ public class HUserDao implements IUserDao {
     public User getByChatId(Long chatId) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             User user = session.get(User.class, chatId);
-            log.info("User with chatId: " + chatId + ", is successfully got from DB");
+            log.info("User is successfully got from DB");
             return user;
         } catch (HibernateException e) {
             log.error(classError + e.getMessage());
@@ -35,9 +35,9 @@ public class HUserDao implements IUserDao {
                 session.getTransaction().begin();
                 session.persist(user);
                 session.getTransaction().commit();
-                log.info(user.toString() + ", is added to DB");
+                log.info("User is added to DB");
             } else {
-                log.info(user.toString() + "is already in the DB");
+                log.info("User is already in the DB");
             }
         } catch (HibernateException e) {
             log.error(classError + e.getMessage());
@@ -48,7 +48,7 @@ public class HUserDao implements IUserDao {
     public void updateUser(User user) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             session.merge(user);
-            log.info(user.toString() + ", is updated in DB");
+            log.info("User is updated in DB");
         } catch (HibernateException e) {
             log.error(classError + e.getMessage());
         }
@@ -57,13 +57,13 @@ public class HUserDao implements IUserDao {
     @Override
     public void deleteUser(User user) {
         if (getByChatId(user.getChatId()) == null) {
-            log.info(user.toString() + " is already deleted");
+            log.info("User  is already deleted");
         } else {
             try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
                 session.getTransaction().begin();
                 session.remove(user);
                 session.getTransaction().commit();
-                log.info(user.toString() + " is successfully deleted");
+                log.info("User  is successfully deleted");
             } catch (HibernateException e) {
                 log.error(classError + e.getMessage());
             }
