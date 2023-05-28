@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.HibernateException;
 import project.bot.model.response.User;
 import project.bot.util.HibernateSessionFactoryUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,14 +30,15 @@ public class HUserDao implements IUserDao {
     @Override
     public void addUser(User user) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
-            User existingUser = session.byNaturalId(User.class)
-                    .load();
+            User existingUser = session.bySimpleNaturalId(User.class).load(user.getChatId());
             if (existingUser == null) {
                 session.getTransaction().begin();
                 session.persist(user);
                 session.getTransaction().commit();
+                log.info(user.toString() + ", is added to DB");
+            } else {
+                log.info(user.toString() + "is already in the DB");
             }
-            log.info(user.toString() + ", is added to DB");
         } catch (HibernateException e) {
             log.error(classError + e.getMessage());
         }

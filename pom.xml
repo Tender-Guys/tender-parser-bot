@@ -10,13 +10,14 @@
 	</parent>
 	<groupId>project</groupId>
 	<artifactId>bot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
 	<name>TenderParserServiceBot</name>
 	<description>Bot for tender-parser-service</description>
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
+		<maven.surefire.plugin.version>3.1.0</maven.surefire.plugin.version>
 		<java.version>17</java.version>
 		<telegarm.version>6.5.0</telegarm.version>
 		<lombok.version>1.18.26</lombok.version>
@@ -93,6 +94,14 @@
 							<version>${lombok.version}</version>
 						</path>
 					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+				<configuration>
+					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -12,5 +12,4 @@ public class TenderParserServiceBotApplication {
     public static void main(String[] args) {
         SpringApplication.run(TenderParserServiceBotApplication.class, args);
     }
-
 }
