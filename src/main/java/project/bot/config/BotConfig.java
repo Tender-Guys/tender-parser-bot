@@ -10,8 +10,8 @@ import org.telegram.telegrambots.bots.DefaultBotOptions;
  */
 @Configuration
 public class BotConfig {
-    private final String botName = System.getenv("botName");
-    private final String botToken = System.getenv("botToken");
+    private final String botName = System.getenv("BOT_NAME");
+    private final String botToken = System.getenv("BOT_TOKEN");
     private final DefaultBotOptions botOptions = new DefaultBotOptions();
 
     public String getBotName() {
