@@ -26,4 +26,4 @@ jobs:
       - name: Maven Clean
         run: mvn clean
       - name: Maven Package
-        run: mvn package -am -o -Dmaven.test.skip -T 1C
+        run: mvn package -am -o -Dmaven.test.skip -T 1C --file pom.xml
