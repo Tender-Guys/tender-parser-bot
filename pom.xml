@@ -92,6 +92,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
+					<compilerArgs>
+						<arg>-J-Xmx128m</arg>
+					</compilerArgs>
 					<release>${java.version}</release>
 					<target>${java.version}</target>
 					<annotationProcessorPaths>
