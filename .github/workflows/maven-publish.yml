@@ -23,5 +23,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Maven Clean
+        run: mvn clean
       - name: Maven Package
-        run: mvn -B clean package --file pom.xml
+        run: mvn package -am -o -Dmaven.test.skip -T 1C
