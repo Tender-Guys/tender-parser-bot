@@ -7,7 +7,7 @@ on:
  pull_request:
     branches:
       - '*'
-push:
+ push:
     branches:
       - 'develop'
 
