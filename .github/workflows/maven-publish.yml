@@ -7,7 +7,7 @@ on:
  pull_request:
     branches:
       - '*'
-  push:
+push:
     branches:
       - 'develop'
 
@@ -21,6 +21,6 @@ jobs:
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
-        java-version: '17'
-      - name: Maven Package
-        run: mvn -B clean package -DskipTests
+      java-version: '17'
+    - name: Maven Package
+      run: mvn -B clean package -DskipTests

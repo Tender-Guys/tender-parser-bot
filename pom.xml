@@ -17,14 +17,21 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
-		<maven.surefire.plugin.version>3.1.0</maven.surefire.plugin.version>
 		<java.version>17</java.version>
 		<telegarm.version>6.5.0</telegarm.version>
 		<lombok.version>1.18.26</lombok.version>
 		<hibernateCore.version>6.1.7.Final</hibernateCore.version>
 		<mySQLConnector.version>8.0.32</mySQLConnector.version>
+		<jupite.version>5.1.0-M1</jupite.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${jupite.version}</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -94,14 +101,6 @@
 							<version>${lombok.version}</version>
 						</path>
 					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven.surefire.plugin.version}</version>
-				<configuration>
-					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>

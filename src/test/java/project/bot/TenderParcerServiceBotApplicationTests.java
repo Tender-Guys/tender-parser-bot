@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TenderParcerServiceBotApplicationTests {
+class TenderParserServiceBotApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void shouldAnswerWithTrue(){
+		assert (true);
 	}
-
 }
