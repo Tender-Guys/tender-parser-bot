@@ -27,3 +27,5 @@ jobs:
         run: mvn clean
       - name: Maven Package
         run: mvn package -am -Dmaven.test.skip -T 1C --file pom.xml
+      - name: Run
+        run: mvn spring-boot:run
